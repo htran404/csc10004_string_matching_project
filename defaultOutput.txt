@@ -1,0 +1,7 @@
+test: (0, 0) -> (0, 3); (0, 0) -> (3, 0); 
+bug: not found
+
+--------------------------------
+Algorithm: Aho-Corasick
+Comparisons: 32
+Execution Time: 0 ms
