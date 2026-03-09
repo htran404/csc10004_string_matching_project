@@ -777,11 +777,7 @@ namespace ahoCorasick
         return res;
     }
 
-    void main(int R, int C,
-              const vector<vector<char>> &grid,
-              int K,
-              const vector<string> &word,
-              const string &outputFile)
+    void main(int R, int C, const vector<vector<char>> &grid, int K, const vector<string> &word, const string &outputFile)
     {
         countComparisions = 0;
 
@@ -792,6 +788,9 @@ namespace ahoCorasick
         vector<vector<pair<pair<int, int>, pair<int, int>>>> answer(K);
 
         // Horizontal
+        // Cut the whole column for comparision
+        // T is the main T we will need to find the Pattern (P)
+        // With Aho-Corasick we should use to find multiple pattern instead using to find only one patter at a time
         for (int r = 0; r < R; ++r)
         {
             string T = "";
@@ -816,12 +815,14 @@ namespace ahoCorasick
 
                 int endPos = cur + word[id].length() - 1;
 
-                answer[id].push_back({{r, cur},
-                                      {r, endPos}});
+                answer[id].push_back({{r, cur}, {r, endPos}});
             }
         }
 
         // Vertical
+        // Cut the whole row of characters for comparision
+        // T is the main T we will need to find the Pattern (P)
+        // With Aho-Corasick we should use to find multiple pattern instead using to find only one patter at a time
         for (int c = 0; c < C; ++c)
         {
             string T = "";
@@ -846,8 +847,7 @@ namespace ahoCorasick
 
                 int endPos = cur + word[id].length() - 1;
 
-                answer[id].push_back({{cur, c},
-                                      {endPos, c}});
+                answer[id].push_back({{cur, c}, {endPos, c}});
             }
         }
 
